@@ -1,0 +1,38 @@
+{
+  "name": "openbadges-bakery-service",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Web frontent for openbadges-bakery",
+  "main": "index.js",
+  "dependencies": {
+    "async": "~0.2.9",
+    "dataurl": "~0.1.0",
+    "express": "~3.1.0",
+    "bunyan": "~0.21.4",
+    "nunjucks": "~0.1.9",
+    "gelf-stream": "~0.2.2",
+    "optimist": "~0.6.0",
+    "request": "~2.22.0",
+    "openbadges-validator": "0.0.21",
+    "openbadges-bakery": "~0.2.5"
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0",
+    "cheerio": "~0.12.0",
+    "sinon": "~1.7.3",
+    "should": "~1.2.2",
+    "supertest": "~0.6.0"
+  },
+  "scripts": {
+    "start": "./bin/openbadges-bakery-service.js | ./node_modules/.bin/bunyan",
+    "start-with-logs": "./bin/openbadges-bakery-service.js | ./bin/messina | ./node_modules/.bin/bunyan",
+    "test": "./node_modules/.bin/mocha --reporter spec --check-leaks test/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mozilla/openbadges-bakery-service.git"
+  },
+  "author": "Brian J. Brennan",
+  "license": "MPL 2.0",
+  "readmeFilename": "README.md"
+}

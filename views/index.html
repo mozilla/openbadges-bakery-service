@@ -1,0 +1,92 @@
+<!DOCTYPE html> <!-- 🍞 -->
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>OpenBadges Bakery</title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.0/pure-min.css">
+  <style>
+    .pure-form button {
+      margin-top: 0.5em;
+    }
+
+    body {
+      padding: 1em;
+    }
+    dt {
+      font-weight: bold;
+      margin: 0 0 0.5em 0;
+    }
+    dd {
+      margin: 0 0 2em 0;
+    }
+    figcaption {
+      color: #505050;
+      text-align: center;
+    }
+
+    form {
+      float: left;
+    }
+    .badge figure {
+      max-width: 300px;
+    }
+    .badge figure img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="pure-g">
+    <div class="pure-u-1">
+      <h1>OpenBadges Bakery</h1>
+    </div>
+    <div class="pure-u-1-2">
+      <form class="pure-form pure-form-stacked bake" method="post" action="/bake">
+        <legend>Bake</legend>
+        <label for="assertionUrl">Assertion URL</label>
+        <input name="assertionUrl" type="text"/>
+        <button type="submit" class="pure-button pure-button-primary">Bake</button>
+      </form>
+    </div>
+
+    <div class="pure-u-1-2">
+      <form class="pure-form pure-form-stacked unbake" method="post" action="/unbake" enctype="multipart/form-data">
+        <legend>Unbake</legend>
+        <label for="badgeFileName">Badge File</label>
+        <input name="badgeFileName" type="file" accept="image/png" style="display:block"/>
+        <button type="submit" class="pure-button pure-button-primary">Unbake</button>
+      </form>
+    </div>
+
+    {% if badge %}
+    <div class="pure-u-1">
+      <h2>Your Badge</h2>
+      <dl class="badge">
+        <dt>Baked Badge</dt>
+        <dd>
+          <figure>
+            <img src="{{ badge.dataUrl }}" alt="Baked badge"/>
+            <figcaption>Right click and choose <i>Save Image As...</i> to save your baked badge</figcaption>
+          </figure>
+        </dd>
+        <dt>Assertion URL</dt>
+        <dd>
+          <a href="{{ badge.assertionUrl }}">{{ badge.assertionUrl }}</a>
+        </dd>
+        <dt>Assertion Metadata</dt>
+        <dd>
+          <pre>{{ badge.metadata|pprint }}</pre>
+        </dd>
+        <dt>Validation Result</dt>
+        <dd>
+          <pre>{{ badge.validation|pprint }}</pre>
+        </dd>
+      </dt>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
