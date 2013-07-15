@@ -7,36 +7,7 @@
   <meta name="viewport" content="width=device-width" />
   <title>OpenBadges Bakery</title>
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.0/pure-min.css">
-  <style>
-    .pure-form button {
-      margin-top: 0.5em;
-    }
-
-    body {
-      padding: 1em;
-    }
-    dt {
-      font-weight: bold;
-      margin: 0 0 0.5em 0;
-    }
-    dd {
-      margin: 0 0 2em 0;
-    }
-    figcaption {
-      color: #505050;
-      text-align: center;
-    }
-
-    form {
-      float: left;
-    }
-    .badge figure {
-      max-width: 300px;
-    }
-    .badge figure img {
-      width: 100%;
-    }
-  </style>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <div class="pure-g">
@@ -64,14 +35,11 @@
     {% if badge %}
     <div class="pure-u-1">
       <h2>Your {{ action|capitalize }}d Badge</h2>
+      <figure>
+        <img src="{{ badge.dataUrl }}" alt="Baked badge"/>
+        <figcaption>Right click and choose <i>Save Image As...</i> to save your baked badge</figcaption>
+      </figure>
       <dl class="badge">
-        <dt>Baked Badge</dt>
-        <dd>
-          <figure>
-            <img src="{{ badge.dataUrl }}" alt="Baked badge"/>
-            <figcaption>Right click and choose <i>Save Image As...</i> to save your baked badge</figcaption>
-          </figure>
-        </dd>
         <dt>Assertion URL</dt>
         <dd>
           <a href="{{ badge.assertionUrl }}">{{ badge.assertionUrl }}</a>
