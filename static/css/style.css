@@ -1,0 +1,42 @@
+body {
+  width: 960px;
+  margin: auto;
+  text-align: center;
+}
+
+.pure-form {
+  width: 380px;
+  margin: 24px auto;
+}
+.pure-form button {
+  margin-top: 0.5em;
+}
+.pure-form input {
+  margin: auto;
+}
+
+figure {
+  max-width: 400px;
+  margin: auto;
+}
+figure img {
+  width: 100%;
+}
+figcaption {
+  color: #505050;
+  text-align: center;
+}
+
+pre {
+  text-align: left;
+}
+dt {
+  font-weight: bold;
+  margin: 0 0 0.5em 0;
+  background-color: #e8e8e8;
+  padding: 2px;
+}
+dd {
+  margin: 0 0 2em 0;
+}
+
