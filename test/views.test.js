@@ -16,9 +16,22 @@ function render(view, ctx) {
 
 describe('views/', function() {
   describe('index.html', function() {
-    it('should something', function(){
-      var foo = 1;
-      foo.should.equal(1);
+    it('should display action name', function(){
+      var $ = render('index.html', { 
+        action: 'bake',
+        badge: {}
+      });
+      $('h2').text().should.match(/Baked/);
+    });
+
+    it('should display badge by data URL', function() {
+      var $ = render('index.html', {
+        action: 'whatever',
+        badge: {
+          dataUrl: 'foo'
+        }
+      });
+      $('img[alt="Baked badge"]').attr('src').should.equal('foo');
     });
   });
 });
