@@ -1,7 +1,6 @@
 var request = require('supertest');
 var sinon = require('sinon');
 var should = require('should');
-var url = require('url');
 var service = require('../');
 
 var utils = require('./utils');
