@@ -1,16 +1,25 @@
 const fs = require('fs');
 const request = require('request');
 const should = require('should');
+const asserter = require('asserter');
 const bakery = require('openbadges-bakery');
 
-const TestAssertions = require('./lib/test-assertions');
 const baker = require('../lib/baker');
 
-var app = new TestAssertions();
+var app = new asserter.app.build({
+  dataDir: __dirname + '/data/assertions',
+  staticDir: __dirname + '/data'
+});
+
+var server = app.listen(0);
+server.getUrl = function getUrl(path) {
+  path = path || '';
+  return 'http://127.0.0.1:' + this.address().port + path;
+}
 
 describe('Baker', function() {
   it('should bake', function(done) {
-    var url = app.getUrl('/demo/1.0/assertion.json');
+    var url = server.getUrl('/demo/1.0/assertion.json');
     baker.bake(url, function(err, result) {
       if (err)
         return done(err);
@@ -24,7 +33,7 @@ describe('Baker', function() {
   });
 
   it('should unbake', function(done) {
-    var url = app.getUrl('/demo/1.0/assertion.json');
+    var url = server.getUrl('/demo/1.0/assertion.json');
     fs.readFile(__dirname + '/data/unbaked.png', function (err, contents) {
       if (err)
         return done(err);
