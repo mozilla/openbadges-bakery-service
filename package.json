@@ -22,7 +22,7 @@
     "sinon": "~1.7.3",
     "should": "~1.2.2",
     "supertest": "~0.6.0",
-    "asserter": "git://github.com/stenington/asserter#master"
+    "badgehost": "git://github.com/stenington/badgehost#master"
   },
   "scripts": {
     "start": "./bin/openbadges-bakery-service.js | ./node_modules/.bin/bunyan",

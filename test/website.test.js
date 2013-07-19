@@ -17,7 +17,7 @@ describe('Website', function() {
 
   describe('/bake', function(done) {
   
-    it('should redirect on GET', function(done) {
+    it.skip('should redirect on GET', function(done) {
       request(app)
         .get('/bake')
         .expect(301, done);
@@ -70,7 +70,7 @@ describe('Website', function() {
 
   describe('/unbake', function(done) {
   
-    it('should redirect on GET', function(done) {
+    it.skip('should redirect on GET', function(done) {
       request(app)
         .get('/unbake')
         .expect(301, done);
@@ -81,7 +81,7 @@ describe('Website', function() {
       sinon.stub(service.baker, "unbake").callsArgWith(1, null, results);
       request(app)
         .post('/unbake')
-        .attach('badgeFile', __dirname + '/data/baked.png')
+        .attach('badgeFile', __dirname + '/data/static/baked.png')
         .expect(200, function(err, res) {
           service.baker.unbake.calledOnce.should.be.true; 
           Buffer.isBuffer(service.baker.unbake.firstCall.args[0]).should.be.true;
@@ -103,7 +103,7 @@ describe('Website', function() {
       sinon.spy(app, "render");
       request(app)
         .post('/unbake')
-        .attach('badgeFile', __dirname + '/data/baked.png')
+        .attach('badgeFile', __dirname + '/data/static/baked.png')
         .expect(200, function(err, res) {
 
           app.render.calledOnce.should.be.true;
