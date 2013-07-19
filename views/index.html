@@ -15,7 +15,8 @@
       <h1>OpenBadges Bakery</h1>
     </div>
     <div class="pure-u-1-2">
-      <form class="pure-form pure-form-stacked bake" method="post" action="/bake">
+      <form class="pure-form pure-form-stacked bake" method="post" action="/">
+        <input type="hidden" name="action" value="bake" />
         <legend>Bake</legend>
         <label for="assertionUrl">Assertion URL</label>
         <input name="assertionUrl" type="text"/>
@@ -24,7 +25,8 @@
     </div>
 
     <div class="pure-u-1-2">
-      <form class="pure-form pure-form-stacked unbake" method="post" action="/unbake" enctype="multipart/form-data">
+      <form class="pure-form pure-form-stacked unbake" method="post" action="/" enctype="multipart/form-data">
+        <input type="hidden" name="action" value="unbake" />
         <legend>Unbake</legend>
         <label for="badgeFile">Badge File</label>
         <input name="badgeFile" type="file" accept="image/png" style="display:block"/>

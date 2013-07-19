@@ -1,0 +1,16 @@
+{
+  "badge": "{{ assertions }}/badge.json",
+  "evidence": "http://example.com/evidence.html",
+  "issuedOn": 1373681532,
+  "recipient": {
+    "hashed": true,
+    "identity": "sha256$2677776425d30aa534295fe379a473bf4c70eb77caa67dae9e7eacc8fdd2aa31",
+    "salt": "me.unbaker",
+    "type": "email"
+  },
+  "uid": "me.unbaker",
+  "verify": {
+    "type": "hosted",
+    "url": "{{ self }}"
+  }
+}

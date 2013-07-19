@@ -1,16 +1,24 @@
 const fs = require('fs');
+const path = require('path');
 const request = require('request');
 const should = require('should');
 const bakery = require('openbadges-bakery');
+const badgehost = require('badgehost');
 
-const TestAssertions = require('./lib/test-assertions');
+var app = badgehost.app.build({
+  staticDir: path.join(__dirname, './data/static'),
+  assertionDir: path.join(__dirname, './data/assertions')
+});
+var server = app.listen(0);
+server.getUrl = function getUrl(path) {
+  return 'http://127.0.0.1:' + this.address().port + path;
+};
+
 const baker = require('../lib/baker');
-
-var app = new TestAssertions();
 
 describe('Baker', function() {
   it('should bake', function(done) {
-    var url = app.getUrl('/demo/1.0/assertion.json');
+    var url = server.getUrl('/demo.json');
     baker.bake(url, function(err, result) {
       if (err)
         return done(err);
@@ -24,8 +32,8 @@ describe('Baker', function() {
   });
 
   it('should unbake', function(done) {
-    var url = app.getUrl('/demo/1.0/assertion.json');
-    fs.readFile(__dirname + '/data/unbaked.png', function (err, contents) {
+    var url = server.getUrl('/demo.json');
+    fs.readFile(__dirname + '/data/static/unbaked.png', function (err, contents) {
       if (err)
         return done(err);
       bakery.bake({ image: contents, data: url }, function(err, imageData) {
@@ -39,6 +47,31 @@ describe('Baker', function() {
             done()
           });
         });
+      });
+    });
+  });
+
+  describe('#ifOption', function(){
+
+    var f = function(arg, cb){
+      cb('called with ' + arg);
+    };
+
+    it('should call func if true', function(done) {
+      var g = baker.ifOption(true, f);
+      g('arg1', function(result){
+        result.should.equal('called with arg1'); 
+        done();
+      });
+    });
+
+    it('should skip if false', function(done) {
+      var g = baker.ifOption(false, f);
+      g('arg1', 'arg2', function(){
+        var args = Array.prototype.slice.call(arguments);
+        // null gets added as error for async-style callback
+        args.should.eql([null, 'arg1', 'arg2']); 
+        done();
       });
     });
   });

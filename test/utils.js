@@ -1,4 +1,4 @@
-var service = require('../');
+const service = require('../');
 
 exports.buildApp = function buildApp(options) {
   options = options || { logLevel: 'fatal' };
