@@ -1,0 +1,18 @@
+{
+  "recipient": "sha256$2ad891a61112bb953171416acc9cfe2484d59a45a3ed574a1ca93b47d07629fe",
+  "salt": "hashbrowns",
+  "expires": "2013-06-01",
+  "issued_on": "2011-06-01",
+  "badge": {
+    "version": "0.5.0",
+    "name": "Test Assertions Demo Badge",
+    "image": "{{ static }}/unbaked.png",
+    "description": "Recipient unbaked a badge! Maybe.\n",
+    "criteria": "http://example.com/criteria.html",
+    "issuer": {
+      "origin": "{{ origin }}",
+      "contact": "example@example.com",
+      "name": "Bob Example"
+   }
+  }
+}
