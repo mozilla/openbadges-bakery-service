@@ -9,16 +9,19 @@ var app = badgehost.app.build({
   staticDir: path.join(__dirname, './data/static'),
   assertionDir: path.join(__dirname, './data/assertions')
 });
-var server = app.listen(0);
-server.getUrl = function getUrl(path) {
-  return 'http://127.0.0.1:' + this.address().port + path;
+var port = 8080;
+
+app.listen(port);
+
+app.getUrl = function getUrl(path) {
+  return 'http://127.0.0.1:' + port + path;
 };
 
 const baker = require('../lib/baker');
 
 describe('Baker', function() {
   it('should bake', function(done) {
-    var url = server.getUrl('/demo.json');
+    var url = app.getUrl('/demo.json');
     baker.bake(url, function(err, result) {
       if (err)
         return done(err);
@@ -32,7 +35,7 @@ describe('Baker', function() {
   });
 
   it('should unbake', function(done) {
-    var url = server.getUrl('/demo.json');
+    var url = app.getUrl('/demo.json');
     fs.readFile(__dirname + '/data/static/unbaked.png', function (err, contents) {
       if (err)
         return done(err);
